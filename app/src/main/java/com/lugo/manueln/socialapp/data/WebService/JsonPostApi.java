@@ -1,6 +1,7 @@
 package com.lugo.manueln.socialapp.data.WebService;
 
 import com.lugo.manueln.socialapp.domain.Comments;
+import com.lugo.manueln.socialapp.domain.Post;
 import com.lugo.manueln.socialapp.domain.Profile;
 
 import java.util.List;

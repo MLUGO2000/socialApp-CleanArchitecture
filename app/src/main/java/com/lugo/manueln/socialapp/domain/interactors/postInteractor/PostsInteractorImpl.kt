@@ -21,7 +21,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class PostsInteractorImpl(internal var miPresenter: PostContract.presenter?) : PostsInteractor {
+class PostsInteractorImpl( var miPresenter: PostContract.presenter?) : PostsInteractor {
 
 
     @Inject
@@ -31,12 +31,13 @@ class PostsInteractorImpl(internal var miPresenter: PostContract.presenter?) : P
     override fun getPosts(main: FragmentActivity?) {
 
 
+
         setupDagger(main)
 
         jsonPostApi!!.postsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object :io.reactivex.Observer<List<Post>> {
+                .subscribe(object :Observer<List<Post>> {
                     override fun onSubscribe(d: Disposable) {
 
                     }
@@ -121,5 +122,7 @@ class PostsInteractorImpl(internal var miPresenter: PostContract.presenter?) : P
 
     }
 }
+
+
 
 
