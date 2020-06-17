@@ -12,7 +12,6 @@ import android.widget.ProgressBar
 import android.widget.Toast
 
 import com.lugo.manueln.socialapp.presentation.Adapters.AdapterPosts
-import com.lugo.manueln.socialapp.domain.models.Post
 import com.lugo.manueln.socialapp.presentation.Posts.Presenter.PresenterPosts
 import com.lugo.manueln.socialapp.R
 import com.lugo.manueln.socialapp.presentation.Posts.PostContract

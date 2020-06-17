@@ -11,8 +11,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 
 import com.lugo.manueln.socialapp.presentation.Adapters.AdapterComments
-import com.lugo.manueln.socialapp.domain.models.Comments
-import com.lugo.manueln.socialapp.domain.models.Post
+import com.lugo.manueln.socialapp.domain.Comments
 import com.lugo.manueln.socialapp.presentation.PostComplete.Presenter.PresenterPostComplete
 import com.lugo.manueln.socialapp.R
 import com.lugo.manueln.socialapp.presentation.PostComplete.PostCompleteContract

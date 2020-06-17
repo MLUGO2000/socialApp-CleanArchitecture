@@ -5,15 +5,18 @@ import android.support.v4.app.FragmentActivity
 
 import com.lugo.manueln.socialapp.data.WebService.JsonPostApi
 import com.lugo.manueln.socialapp.presentation.Profile.View.ProfileFragment
-import com.lugo.manueln.socialapp.domain.models.Post
 import com.lugo.manueln.socialapp.domain.di.BaseApplication
 import com.lugo.manueln.socialapp.R
+import com.lugo.manueln.socialapp.domain.Post
 import com.lugo.manueln.socialapp.presentation.PostComplete.View.PostCompleteFragment
 import com.lugo.manueln.socialapp.presentation.Posts.PostContract
+import io.reactivex.Observer
+
+
 
 import javax.inject.Inject
 
-import io.reactivex.Observer
+
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -33,7 +36,7 @@ class PostsInteractorImpl(internal var miPresenter: PostContract.presenter?) : P
         jsonPostApi!!.postsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<List<Post>> {
+                .subscribe(object :io.reactivex.Observer<List<Post>> {
                     override fun onSubscribe(d: Disposable) {
 
                     }
@@ -118,3 +121,5 @@ class PostsInteractorImpl(internal var miPresenter: PostContract.presenter?) : P
 
     }
 }
+
+

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 
 import com.lugo.manueln.socialapp.R
-import com.lugo.manueln.socialapp.domain.models.Post
 import com.squareup.picasso.Picasso
 
 class AdapterProfilePhotos(internal var listPreviewPhoto: List<Post>) : RecyclerView.Adapter<AdapterProfilePhotos.ViewProfilePhotos>() {

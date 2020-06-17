@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 
-import com.lugo.manueln.socialapp.domain.models.Post
 import com.lugo.manueln.socialapp.presentation.Posts.PostContract
 import com.lugo.manueln.socialapp.presentation.Posts.Presenter.PresenterPosts
 import com.lugo.manueln.socialapp.R

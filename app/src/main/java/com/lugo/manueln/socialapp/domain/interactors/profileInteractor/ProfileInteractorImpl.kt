@@ -5,8 +5,8 @@ import android.util.Log
 
 import com.lugo.manueln.socialapp.data.WebService.JsonPostApi
 import com.lugo.manueln.socialapp.domain.di.BaseApplication
+import com.lugo.manueln.socialapp.domain.Profile
 import com.lugo.manueln.socialapp.domain.models.Post
-import com.lugo.manueln.socialapp.domain.models.Profile
 import com.lugo.manueln.socialapp.presentation.Profile.ProfileContract
 
 import javax.inject.Inject
@@ -28,7 +28,7 @@ class ProfileInteractorImpl(internal var presenter: ProfileContract.presenter) :
         jsonPostApi!!.getListPostUser(user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<List<Post>> {
+                .subscribe(object : java.util.Observer<List<Post>> {
                     override fun onSubscribe(d: Disposable) {
 
                     }

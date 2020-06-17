@@ -1,10 +1,10 @@
 package com.lugo.manueln.socialapp.presentation.Posts.Presenter
 
 import android.support.v4.app.FragmentActivity
+import com.lugo.manueln.socialapp.domain.Post
 import com.lugo.manueln.socialapp.domain.interactors.postInteractor.PostsInteractor
 
 import com.lugo.manueln.socialapp.domain.interactors.postInteractor.PostsInteractorImpl
-import com.lugo.manueln.socialapp.domain.models.Post
 import com.lugo.manueln.socialapp.presentation.Posts.PostContract
 
 class PresenterPosts(private val view: PostContract.view) : PostContract.presenter {

@@ -1,8 +1,7 @@
 package com.lugo.manueln.socialapp.presentation.Profile
 
 import android.support.v4.app.FragmentActivity
-import com.lugo.manueln.socialapp.domain.models.Post
-import com.lugo.manueln.socialapp.domain.models.Profile
+import com.lugo.manueln.socialapp.domain.Profile
 
 interface ProfileContract{
 

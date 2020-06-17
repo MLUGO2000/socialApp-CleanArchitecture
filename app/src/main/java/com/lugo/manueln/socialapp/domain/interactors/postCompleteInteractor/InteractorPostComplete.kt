@@ -1,7 +1,7 @@
 package com.lugo.manueln.socialapp.domain.interactors.postCompleteInteractor
 
 import android.support.v4.app.FragmentActivity
-import com.lugo.manueln.socialapp.domain.models.Comments
+import com.lugo.manueln.socialapp.domain.Comments
 
 interface InteractorPostComplete {
 

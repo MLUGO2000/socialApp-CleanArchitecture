@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-import com.lugo.manueln.socialapp.domain.models.Comments
+import com.lugo.manueln.socialapp.domain.Comments
 import com.lugo.manueln.socialapp.R
 
 class AdapterComments(internal var comments: List<Comments>) : RecyclerView.Adapter<AdapterComments.ViewHolder>() {

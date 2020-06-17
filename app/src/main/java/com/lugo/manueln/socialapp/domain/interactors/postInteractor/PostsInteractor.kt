@@ -1,7 +1,6 @@
 package com.lugo.manueln.socialapp.domain.interactors.postInteractor
 
 import android.support.v4.app.FragmentActivity
-import com.lugo.manueln.socialapp.domain.models.Post
 
 interface PostsInteractor {
 
