@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity
 import com.lugo.manueln.socialapp.domain.interactors.postCompleteInteractor.InteractorPostCompleteImpl
 import com.lugo.manueln.socialapp.domain.interactors.postCompleteInteractor.InteractorPostComplete
 import com.lugo.manueln.socialapp.domain.Comments
+import com.lugo.manueln.socialapp.domain.Post
 import com.lugo.manueln.socialapp.presentation.PostComplete.PostCompleteContract
 
 class PresenterPostComplete(private var view: PostCompleteContract.view) : PostCompleteContract.presenter {

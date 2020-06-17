@@ -11,10 +11,11 @@ import android.widget.TextView
 import com.lugo.manueln.socialapp.presentation.Posts.PostContract
 import com.lugo.manueln.socialapp.presentation.Posts.Presenter.PresenterPosts
 import com.lugo.manueln.socialapp.R
+import com.lugo.manueln.socialapp.domain.Post
 import com.lugo.manueln.socialapp.presentation.Posts.View.PostsFragment
 import com.squareup.picasso.Picasso
 
-class AdapterPosts(var miListPosts: List<Post>,  var miActividadPost: PostsFragment) : RecyclerView.Adapter<AdapterPosts.ViewHolderPost>() {
+class AdapterPosts(var miListPosts: List<Post>, var miActividadPost: PostsFragment) : RecyclerView.Adapter<AdapterPosts.ViewHolderPost>() {
      var myPresenter: PostContract.presenter
 
 
@@ -34,9 +35,9 @@ class AdapterPosts(var miListPosts: List<Post>,  var miActividadPost: PostsFragm
 
     override fun onBindViewHolder(holderPost: ViewHolderPost, i: Int) {
 
-        holderPost.txtUserName.text = miListPosts[i].userName.toString()
-        holderPost.txtTitle.text = miListPosts[i].title.toString()
-        holderPost.txtBody.text = miListPosts[i].body.toString()
+        holderPost.txtUserName.text = miListPosts[i].userName
+        holderPost.txtTitle.text = miListPosts[i].title
+        holderPost.txtBody.text = miListPosts[i].body
 
         loadImage(miListPosts[i].image, holderPost.image)
 

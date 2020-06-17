@@ -4,9 +4,8 @@ import android.support.v4.app.FragmentActivity
 import android.util.Log
 
 import com.lugo.manueln.socialapp.data.WebService.JsonPostApi
-import com.lugo.manueln.socialapp.domain.Comments
 import com.lugo.manueln.socialapp.domain.Post
-import com.lugo.manueln.socialapp.domain.di.BaseApplication
+import com.lugo.manueln.socialapp.BaseApplication
 import com.lugo.manueln.socialapp.domain.Profile
 import com.lugo.manueln.socialapp.presentation.Profile.ProfileContract
 

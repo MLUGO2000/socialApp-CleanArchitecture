@@ -1,4 +1,6 @@
-package com.lugo.manueln.socialapp.domain.di;
+package com.lugo.manueln.socialapp.di;
+
+import android.content.Context;
 
 import com.lugo.manueln.socialapp.domain.interactors.postCompleteInteractor.InteractorPostCompleteImpl;
 import com.lugo.manueln.socialapp.domain.interactors.postInteractor.PostsInteractorImpl;
@@ -10,12 +12,12 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = moduleApi.class)
-public interface componentApi {
+public interface mainComponent {
 
     void inject(PostsInteractorImpl postsInteractorImpl);
     void inject(InteractorPostCompleteImpl modulePostComplete);
-    void inject(ModuleAlbums moduleAlbums);
-    void inject(ModulePhotos modulePhotos);
     void inject(ProfileInteractorImpl profileInteractorImpl);
+
+    Context context();
 
 }

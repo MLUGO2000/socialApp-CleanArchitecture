@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import com.lugo.manueln.socialapp.presentation.Adapters.AdapterProfilePhotos
 import com.lugo.manueln.socialapp.presentation.Profile.Presenter.ProfilePresenter
 import com.lugo.manueln.socialapp.R
+import com.lugo.manueln.socialapp.domain.Post
 import com.lugo.manueln.socialapp.domain.Profile
 import com.lugo.manueln.socialapp.presentation.Profile.ProfileContract
 import kotlinx.android.synthetic.main.fragment_profile.*

@@ -2,6 +2,7 @@ package com.lugo.manueln.socialapp.presentation.PostComplete
 
 import android.support.v4.app.FragmentActivity
 import com.lugo.manueln.socialapp.domain.Comments
+import com.lugo.manueln.socialapp.domain.Post
 
 interface PostCompleteContract {
 

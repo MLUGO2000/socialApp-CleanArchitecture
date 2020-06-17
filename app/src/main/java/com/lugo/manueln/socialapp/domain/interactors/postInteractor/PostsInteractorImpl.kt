@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentActivity
 
 import com.lugo.manueln.socialapp.data.WebService.JsonPostApi
 import com.lugo.manueln.socialapp.presentation.Profile.View.ProfileFragment
-import com.lugo.manueln.socialapp.domain.di.BaseApplication
+import com.lugo.manueln.socialapp.BaseApplication
 import com.lugo.manueln.socialapp.R
 import com.lugo.manueln.socialapp.domain.Post
 import com.lugo.manueln.socialapp.presentation.PostComplete.View.PostCompleteFragment

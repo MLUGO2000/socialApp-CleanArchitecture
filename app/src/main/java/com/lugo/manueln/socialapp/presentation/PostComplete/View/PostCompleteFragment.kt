@@ -14,6 +14,7 @@ import com.lugo.manueln.socialapp.presentation.Adapters.AdapterComments
 import com.lugo.manueln.socialapp.domain.Comments
 import com.lugo.manueln.socialapp.presentation.PostComplete.Presenter.PresenterPostComplete
 import com.lugo.manueln.socialapp.R
+import com.lugo.manueln.socialapp.domain.Post
 import com.lugo.manueln.socialapp.presentation.PostComplete.PostCompleteContract
 import kotlinx.android.synthetic.main.fragment_post_complete.*
 
@@ -74,11 +75,7 @@ class PostCompleteFragment : Fragment(), PostCompleteContract.view {
 
         val comment = userComment.text.toString()
 
-        val myComment = Comments()
-
-        myComment.postId = idPost
-        myComment.body = comment
-        myComment.userName = "Manuel"
+        val myComment = Comments(idPost,0,"Manuel","",comment)
 
         myPresenter!!.saveComment(myComment)
 

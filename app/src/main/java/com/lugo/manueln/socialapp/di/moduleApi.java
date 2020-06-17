@@ -1,6 +1,9 @@
-package com.lugo.manueln.socialapp.domain.di;
+package com.lugo.manueln.socialapp.di;
 
 
+import android.content.Context;
+
+import com.lugo.manueln.socialapp.BaseApplication;
 import com.lugo.manueln.socialapp.data.WebService.JsonPostApi;
 
 import javax.inject.Singleton;
@@ -14,6 +17,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class moduleApi {
+
+    private final BaseApplication baseApplication;
+
+    public moduleApi(BaseApplication baseApplication) {
+        this.baseApplication = baseApplication;
+    }
+
+    @Provides
+    @Singleton
+    Context providesAplicationContext(){
+        return baseApplication;
+    }
 
     @Provides
     @Singleton
@@ -45,6 +60,7 @@ public class moduleApi {
 
         return retrofit.create(JsonPostApi.class);
     }
+
 
 
 

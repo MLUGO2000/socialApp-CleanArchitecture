@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentActivity
 import com.lugo.manueln.socialapp.data.WebService.JsonPostApi
 import com.lugo.manueln.socialapp.domain.Comments
 import com.lugo.manueln.socialapp.domain.Post
-import com.lugo.manueln.socialapp.domain.di.BaseApplication
+import com.lugo.manueln.socialapp.BaseApplication
 import com.lugo.manueln.socialapp.presentation.PostComplete.PostCompleteContract
 
 import javax.inject.Inject
