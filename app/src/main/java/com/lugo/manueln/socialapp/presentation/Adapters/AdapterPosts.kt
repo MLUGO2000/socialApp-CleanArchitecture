@@ -16,15 +16,7 @@ import com.lugo.manueln.socialapp.presentation.Posts.View.PostsFragment
 import com.squareup.picasso.Picasso
 
 class AdapterPosts(var miListPosts: List<Post>, var miActividadPost: PostsFragment) : RecyclerView.Adapter<AdapterPosts.ViewHolderPost>() {
-     var myPresenter: PostContract.presenter
 
-
-    init {
-
-        myPresenter = PresenterPosts(miActividadPost)
-
-
-    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolderPost {
 
@@ -43,9 +35,12 @@ class AdapterPosts(var miListPosts: List<Post>, var miActividadPost: PostsFragme
 
 
         holderPost.bMas.id = miListPosts[i].id
-        holderPost.bMas.setOnClickListener { myPresenter.newPostCompleteFragmentPresenter(miListPosts[i].id, miActividadPost.activity!!) }
 
-        holderPost.txtUserName.setOnClickListener { myPresenter.newProfileFragmentPresenter(miListPosts[i].userName, miActividadPost.activity!!) }
+
+        holderPost.bMas.setOnClickListener {
+            miActividadPost.newPostCompleteFragment(miListPosts[i].id) }
+
+       // holderPost.txtUserName.setOnClickListener { myPresenter.newProfileFragmentPresenter(miListPosts[i].userName, miActividadPost.activity!!) }
 
     }
 

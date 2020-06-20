@@ -10,8 +10,6 @@ import com.lugo.manueln.socialapp.domain.Post
 import com.lugo.manueln.socialapp.BaseApplication
 import com.lugo.manueln.socialapp.presentation.PostComplete.PostCompleteContract
 
-import javax.inject.Inject
-
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -22,12 +20,11 @@ import retrofit2.Response
 
 class InteractorPostCompleteImpl(var myPresenter: PostCompleteContract.presenter) : InteractorPostComplete {
 
-    @Inject
+    //@Inject
     lateinit var jsonPostApi: JsonPostApi
 
     override fun retrofitGetPostCompleteWithComments(idPost: Int, fragmentActivity: FragmentActivity?) {
 
-        setupDagger(fragmentActivity)
 
         getPostComplete(idPost)
 
@@ -61,7 +58,7 @@ class InteractorPostCompleteImpl(var myPresenter: PostCompleteContract.presenter
                 })
         ////////////////////
 
-        /* Call<Post> callPost=jsonPostApi.getPostComplete(id);
+        /* Call<Post> callPost=jsonPostApi.GetPostComplete(id);
 
         callPost.enqueue(new Callback<Post>() {
             @Override
@@ -184,7 +181,4 @@ class InteractorPostCompleteImpl(var myPresenter: PostCompleteContract.presenter
 
     }
 
-    private fun setupDagger(activity: FragmentActivity?) {
-        (activity?.application as BaseApplication).componentApi.inject(this)
-    }
 }

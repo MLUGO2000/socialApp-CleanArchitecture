@@ -11,15 +11,16 @@ interface PostContract {
         fun showRecycler(miListaPost: List<Post>)
         fun errorLoadRecyclerPost(error: String?)
 
+        fun newPostCompleteFragment(idPost: Int)
+        fun newProfileFragment(userName: String)
+
 
     }
 
     interface presenter {
 
-        fun loadRecyclerPostPresenter(main: FragmentActivity?)
+        fun loadRecyclerPostPresenter()
         fun sendPostPresenter(miListaPost: List<Post>)
         fun sendErrorPostPresenter(error: String?)
-        fun newPostCompleteFragmentPresenter(idPost: Int, fragmentActivity: FragmentActivity)
-        fun newProfileFragmentPresenter(userName: String, fragmentActivity: FragmentActivity)
     }
 }

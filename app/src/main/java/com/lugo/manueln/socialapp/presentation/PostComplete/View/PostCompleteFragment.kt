@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import com.lugo.manueln.socialapp.BaseApplication
 
 import com.lugo.manueln.socialapp.presentation.Adapters.AdapterComments
 import com.lugo.manueln.socialapp.domain.Comments
@@ -16,7 +17,10 @@ import com.lugo.manueln.socialapp.presentation.PostComplete.Presenter.PresenterP
 import com.lugo.manueln.socialapp.R
 import com.lugo.manueln.socialapp.domain.Post
 import com.lugo.manueln.socialapp.presentation.PostComplete.PostCompleteContract
+import com.lugo.manueln.socialapp.usecases.PostComplete.GetCommentsPost
+import com.lugo.manueln.socialapp.usecases.PostComplete.GetPostComplete
 import kotlinx.android.synthetic.main.fragment_post_complete.*
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
@@ -27,6 +31,12 @@ import kotlinx.android.synthetic.main.fragment_post_complete.*
  * create an instance of this fragment.
  */
 class PostCompleteFragment : Fragment(), PostCompleteContract.view {
+
+    @Inject
+    lateinit var getPostComplete: GetPostComplete
+
+    @Inject
+    lateinit var getCommentsPost: GetCommentsPost
 
     private lateinit var myPresenter: PostCompleteContract.presenter
 
@@ -48,12 +58,14 @@ class PostCompleteFragment : Fragment(), PostCompleteContract.view {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+
+        (activity?.application as BaseApplication).componentApi.inject(this)
         return inflater.inflate(R.layout.fragment_post_complete, container, false)
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        myPresenter = PresenterPostComplete(this)
+        myPresenter = PresenterPostComplete(this,getPostComplete,getCommentsPost)
 
         cargarViews()
 
@@ -106,11 +118,8 @@ class PostCompleteFragment : Fragment(), PostCompleteContract.view {
 
     override fun loadPostComplete() {
 
-        if (myPresenter != null) {
-
-            progressBarPostComplete.visibility = ProgressBar.VISIBLE
-
-            myPresenter!!.loadPostCompleteWithComments(idPost, this.activity)
+        if (myPresenter != null){
+            myPresenter.loadPostCompleteWithComments(idPost)
         }
     }
 
@@ -138,6 +147,13 @@ class PostCompleteFragment : Fragment(), PostCompleteContract.view {
         loadPostComplete()
     }
 
+    override fun showProgressBar() {
+        progressBarPostComplete.visibility = ProgressBar.VISIBLE
+    }
+
+    override fun hideProgressbar() {
+        progressBarPostComplete.visibility = ProgressBar.GONE
+    }
 
     /**
      * This interface must be implemented by activities that contain this

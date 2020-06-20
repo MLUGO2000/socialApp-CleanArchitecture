@@ -4,19 +4,24 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.lugo.manueln.socialapp.BaseApplication
 
 import com.lugo.manueln.socialapp.presentation.Adapters.AdapterPosts
 import com.lugo.manueln.socialapp.presentation.Posts.Presenter.PresenterPosts
 import com.lugo.manueln.socialapp.R
 import com.lugo.manueln.socialapp.domain.Post
+import com.lugo.manueln.socialapp.presentation.PostComplete.View.PostCompleteFragment
 import com.lugo.manueln.socialapp.presentation.Posts.PostContract
+import com.lugo.manueln.socialapp.usecases.Posts.GetListPosts
 import kotlinx.android.synthetic.main.fragment_posts.*
+import javax.inject.Inject
 
 
 /**
@@ -29,7 +34,13 @@ import kotlinx.android.synthetic.main.fragment_posts.*
  */
 class PostsFragment : Fragment(), PostContract.view {
 
+
+    @Inject
+    lateinit var getPosts: GetListPosts
+
+
     private lateinit var presenter: PostContract.presenter
+
 
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
@@ -49,25 +60,22 @@ class PostsFragment : Fragment(), PostContract.view {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+
+        (activity?.application as BaseApplication).componentApi.inject(this)
+
         return inflater.inflate(R.layout.fragment_posts, container, false)
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        presenter = PresenterPosts(this)
+        presenter = PresenterPosts(this, getPosts)
 
-        rvPosts.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+        rvPosts.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
         loadRecyclerPost()
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        if (mListener != null) {
-            mListener!!.onFragmentInteraction(uri)
-        }
-    }
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -87,7 +95,7 @@ class PostsFragment : Fragment(), PostContract.view {
 
         if (presenter != null) {
             progressBarRecycler.visibility = ProgressBar.VISIBLE
-            presenter!!.loadRecyclerPostPresenter(this.activity)
+            presenter.loadRecyclerPostPresenter()
         }
     }
 
@@ -103,6 +111,22 @@ class PostsFragment : Fragment(), PostContract.view {
 
     override fun errorLoadRecyclerPost(error: String?) {
         Toast.makeText(context, "Se Produjo un Error de Tipo $error", Toast.LENGTH_LONG).show()
+    }
+
+    override fun newPostCompleteFragment(idPost: Int) {
+
+
+
+        activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.contenedorFragment,PostCompleteFragment.newInstance(idPost))?.addToBackStack(null)?.commit()
+
+    }
+
+    override fun newProfileFragment(userName: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    private fun setupDagger(activity: FragmentActivity?) {
+
     }
 
     /**

@@ -9,15 +9,13 @@ import com.lugo.manueln.socialapp.BaseApplication
 import com.lugo.manueln.socialapp.domain.Profile
 import com.lugo.manueln.socialapp.presentation.Profile.ProfileContract
 
-import javax.inject.Inject
-
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 class ProfileInteractorImpl(internal var presenter: ProfileContract.presenter) : ProfileInteractor {
-    @Inject
+    //@Inject
     lateinit var jsonPostApi: JsonPostApi
 
 

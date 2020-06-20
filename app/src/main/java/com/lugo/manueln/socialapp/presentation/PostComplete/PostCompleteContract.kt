@@ -13,13 +13,17 @@ interface PostCompleteContract {
         fun showCommentsPost(commentsList: List<Comments>)
         fun showErrorLoadPost(error: String?)
         fun updatePostComplete()
+        fun showProgressBar()
+        fun hideProgressbar()
+
+
 
 
     }
 
     interface presenter {
 
-        fun loadPostCompleteWithComments(id: Int, fragmentActivity: FragmentActivity?)
+        fun loadPostCompleteWithComments(id: Int)
         fun PostCompleteWithCommentsPresenter(miPost: Post, commentsList: List<Comments>)
         fun sendErrorLoadPost(error: String?)
         fun saveComment(comment: Comments)

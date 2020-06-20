@@ -7,17 +7,80 @@ import com.lugo.manueln.socialapp.domain.interactors.postCompleteInteractor.Inte
 import com.lugo.manueln.socialapp.domain.Comments
 import com.lugo.manueln.socialapp.domain.Post
 import com.lugo.manueln.socialapp.presentation.PostComplete.PostCompleteContract
+import com.lugo.manueln.socialapp.usecases.PostComplete.GetCommentsPost
+import com.lugo.manueln.socialapp.usecases.PostComplete.GetPostComplete
+import io.reactivex.Observer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 
-class PresenterPostComplete(private var view: PostCompleteContract.view) : PostCompleteContract.presenter {
-     var interactor: InteractorPostComplete
+class PresenterPostComplete(private var view: PostCompleteContract.view?,private val getPostComplete: GetPostComplete,private val getCommentsPost:GetCommentsPost) : PostCompleteContract.presenter {
 
-    init {
-        interactor = InteractorPostCompleteImpl(this)
-    }
 
-    override fun loadPostCompleteWithComments(id: Int, fragmentActivity: FragmentActivity?) {
+    override fun loadPostCompleteWithComments(id: Int) {
 
-        interactor.retrofitGetPostCompleteWithComments(id, fragmentActivity)
+        view?.showProgressBar()
+
+        getPostComplete.invoke(id).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object :Observer<Post>{
+            override fun onComplete() {
+
+            }
+
+            override fun onSubscribe(d: Disposable) {
+
+            }
+
+            override fun onNext(post: Post) {
+
+                if(view!=null){
+                    view?.showPostComplete(post)
+                }
+
+
+            }
+
+            override fun onError(e: Throwable) {
+
+                if(view!=null){
+                    view?.showErrorLoadPost(e.message)
+                }
+            }
+        })
+
+
+        getCommentsPost.invoke(id).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object :Observer<List<Comments>>{
+                    override fun onComplete() {
+
+                    }
+
+                    override fun onSubscribe(d: Disposable) {
+
+                    }
+
+                    override fun onNext(listComments: List<Comments>) {
+
+                        if(view!=null){
+                            view?.showCommentsPost(listComments)
+
+                            view?.hideProgressbar()
+                        }
+
+                    }
+
+                    override fun onError(e: Throwable) {
+
+                        if(view!=null){
+                         view?.showErrorLoadPost(e.message)
+                        }
+                    }
+                })
+
+
+
     }
 
     override fun PostCompleteWithCommentsPresenter(miPost: Post, commentsList: List<Comments>) {
@@ -39,12 +102,11 @@ class PresenterPostComplete(private var view: PostCompleteContract.view) : PostC
 
     override fun saveComment(comment: Comments) {
 
-        interactor.saveCommentPost(comment)
+
 
     }
 
     override fun updatePostComplete() {
-
 
     }
 }
