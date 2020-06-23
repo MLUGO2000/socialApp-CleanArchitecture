@@ -8,21 +8,19 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 
-import com.lugo.manueln.socialapp.presentation.Posts.PostContract
-import com.lugo.manueln.socialapp.presentation.Posts.Presenter.PresenterPosts
 import com.lugo.manueln.socialapp.R
 import com.lugo.manueln.socialapp.domain.Post
-import com.lugo.manueln.socialapp.presentation.Posts.View.PostsFragment
 import com.squareup.picasso.Picasso
 
-class AdapterPosts(var miListPosts: List<Post>, var miActividadPost: PostsFragment) : RecyclerView.Adapter<AdapterPosts.ViewHolderPost>() {
+class AdapterPosts(var miListPosts: List<Post>,var mOnPostListener:OnPostListener) : RecyclerView.Adapter<AdapterPosts.ViewHolderPost>() {
+
 
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolderPost {
 
         val vista = LayoutInflater.from(viewGroup.context).inflate(R.layout.post_item, viewGroup, false)
 
-        return ViewHolderPost(vista)
+        return ViewHolderPost(vista,mOnPostListener)
     }
 
     override fun onBindViewHolder(holderPost: ViewHolderPost, i: Int) {
@@ -34,13 +32,7 @@ class AdapterPosts(var miListPosts: List<Post>, var miActividadPost: PostsFragme
         loadImage(miListPosts[i].image, holderPost.image)
 
 
-        holderPost.bMas.id = miListPosts[i].id
-
-
-        holderPost.bMas.setOnClickListener {
-            miActividadPost.newPostCompleteFragment(miListPosts[i].id) }
-
-       // holderPost.txtUserName.setOnClickListener { myPresenter.newProfileFragmentPresenter(miListPosts[i].userName, miActividadPost.activity!!) }
+        // holderPost.txtUserName.setOnClickListener { myPresenter.newProfileFragmentPresenter(miListPosts[i].userName, miActividadPost.activity!!) }
 
     }
 
@@ -58,12 +50,13 @@ class AdapterPosts(var miListPosts: List<Post>, var miActividadPost: PostsFragme
     }
 
 
-    inner class ViewHolderPost(itemView: View) : RecyclerView.ViewHolder(itemView) {
-         var txtUserName: TextView
-         var txtTitle: TextView
-         var txtBody: TextView
-         var image: ImageView
-         var bMas: Button
+    inner class ViewHolderPost(itemView: View, var onPostListener: OnPostListener) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
+        var txtUserName: TextView
+        var txtTitle: TextView
+        var txtBody: TextView
+        var image: ImageView
+        var bMas: Button
 
         init {
 
@@ -73,7 +66,29 @@ class AdapterPosts(var miListPosts: List<Post>, var miActividadPost: PostsFragme
             txtBody = itemView.findViewById(R.id.textBody)
             bMas = itemView.findViewById(R.id.bMas)
 
+            bMas.setOnClickListener(this)
+            txtUserName.setOnClickListener(this)
 
         }
+
+        override fun onClick(viewClick: View?) {
+
+            when(viewClick?.id){
+
+                R.id.textUserName-> onPostListener.onProfileClick(miListPosts.get(adapterPosition).userName)
+
+                R.id.bMas->onPostListener.onPostClick(miListPosts.get(adapterPosition).id)
+
+            }
+
+        }
+
+    }
+
+    interface OnPostListener {
+
+        fun onPostClick(idPost: Int)
+
+        fun onProfileClick(userName:String)
     }
 }
