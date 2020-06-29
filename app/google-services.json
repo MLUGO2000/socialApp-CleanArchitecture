@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "941209343161",
+    "firebase_url": "https://socialapp-abd94.firebaseio.com",
+    "project_id": "socialapp-abd94",
+    "storage_bucket": "socialapp-abd94.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941209343161:android:79ca3b7a92645427007768",
+        "android_client_info": {
+          "package_name": "com.lugo.manueln.socialapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941209343161-inh225r459vuuefd66hj05vsbfh8qtta.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lugo.manueln.socialapp",
+            "certificate_hash": "161fa49d301c4b25e68562be7fe9fdaf64101048"
+          }
+        },
+        {
+          "client_id": "941209343161-66d84begj24nfbamjejqdhmm6fldjft0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDftGn-zhxqo80b6lOlMk74zZwgZjCW8Bw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "941209343161-66d84begj24nfbamjejqdhmm6fldjft0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -21,5 +21,9 @@ interface PostContract {
         fun loadRecyclerPostPresenter()
         fun sendPostPresenter(miListaPost: List<Post>)
         fun sendErrorPostPresenter(error: String?)
+
+        fun detachView()
+        fun isViewAttach():Boolean
+
     }
 }

@@ -1,13 +1,11 @@
-package com.lugo.manueln.socialapp.data.WebService
+package com.lugo.manueln.socialapp.framework.Retrofit
 
 import com.lugo.manueln.socialapp.data.Post.entity.PostEntity
 import com.lugo.manueln.socialapp.domain.Comments
 import com.lugo.manueln.socialapp.domain.Post
 import com.lugo.manueln.socialapp.domain.Profile
 import io.reactivex.Observable
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface JsonPostKotlinApi {
 
@@ -27,4 +25,7 @@ interface JsonPostKotlinApi {
 
     @GET("profile?")
     fun getProfileUser(@Query("userName") userName: String): Observable<List<Profile>>
+
+    @POST("comments")
+    fun saveComment(@Body comment: Comments): Observable<Comments>
 }

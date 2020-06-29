@@ -3,6 +3,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="loginTxt">Bienvenido</string>
+    <string name="loginButton">Iniciar</string>
     <string name="coment">Ver Mas....</string>
     <string name="ip">http://192.168.0.109:3000/</string>
 </resources>

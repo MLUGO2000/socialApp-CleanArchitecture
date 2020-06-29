@@ -2,6 +2,7 @@ package com.lugo.manueln.socialapp.di
 
 import android.content.Context
 import com.lugo.manueln.socialapp.BaseApplication
+import com.lugo.manueln.socialapp.presentation.Views.LoginActivity.View.LoginActivity
 
 
 import com.lugo.manueln.socialapp.presentation.Views.PostComplete.View.PostCompleteFragment
@@ -21,6 +22,7 @@ interface mainComponent {
     fun inject(postsFragment: PostsFragment)
     fun inject(postCompleteFragment: PostCompleteFragment)
     fun inject(profileFragment: ProfileFragment)
+    fun inject(loginActivity: LoginActivity)
 
 
     fun context(): Context

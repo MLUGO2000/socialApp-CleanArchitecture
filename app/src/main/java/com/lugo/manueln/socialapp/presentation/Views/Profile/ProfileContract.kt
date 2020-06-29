@@ -6,19 +6,26 @@ import com.lugo.manueln.socialapp.domain.Profile
 
 interface ProfileContract{
 
-    interface presenter {
-
-        fun loadProfilePresenter(user: String, activity: FragmentActivity)
-        fun showProfilePresenter(profile: Profile, postList: List<Post>)
-
-    }
-
-
     interface view {
         fun showListPostsProfile(postList: List<Post>)
         fun showProfile(profile: Profile?)
         fun showError(error:String?)
 
+
+
     }
+
+    interface presenter {
+
+        fun loadProfilePresenter(user: String, activity: FragmentActivity)
+        fun showProfilePresenter(profile: Profile, postList: List<Post>)
+
+        fun detachView()
+        fun isViewAttach():Boolean
+
+    }
+
+
+
 
 }

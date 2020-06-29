@@ -1,10 +1,14 @@
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
+
+
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    implementation 'com.google.firebase:firebase-auth:16.0.1'
 
     //Retrofit and Adapter RxJava
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
@@ -18,5 +22,10 @@ dependencies {
     implementation project(':domain')
 }
 
+repositories {
+    mavenCentral()
+}
+
 sourceCompatibility = "7"
 targetCompatibility = "7"
+

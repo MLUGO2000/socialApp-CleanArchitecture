@@ -89,6 +89,7 @@ class PostsFragment : Fragment(), PostContract.view ,AdapterPosts.OnPostListener
     override fun onDetach() {
         super.onDetach()
         mListener = null
+        presenter.detachView()
     }
 
     override fun loadRecyclerPost() {

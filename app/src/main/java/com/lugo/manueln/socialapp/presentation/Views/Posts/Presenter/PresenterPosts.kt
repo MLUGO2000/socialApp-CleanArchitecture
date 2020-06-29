@@ -8,7 +8,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class PresenterPosts(private var view: PostContract.view,private val getListPosts: GetListPosts) : PostContract.presenter {
+class PresenterPosts(private var view: PostContract.view?,private val getListPosts: GetListPosts) : PostContract.presenter {
 
 
     override fun loadRecyclerPostPresenter() {
@@ -26,13 +26,13 @@ class PresenterPosts(private var view: PostContract.view,private val getListPost
 
                     override fun onNext(listPost: List<Post>) {
 
-                        view.showRecycler(listPost)
+                        view?.showRecycler(listPost)
                     }
 
                     override fun onError(e: Throwable) {
 
 
-                        view.errorLoadRecyclerPost(e.message)
+                        view?.errorLoadRecyclerPost(e.message)
                     }
                 })
 
@@ -42,7 +42,7 @@ class PresenterPosts(private var view: PostContract.view,private val getListPost
 
     override fun sendPostPresenter(miListaPost: List<Post>) {
 
-        if (view != null) {
+        if (isViewAttach()) {
 
             view!!.showRecycler(miListaPost)
         }
@@ -50,11 +50,16 @@ class PresenterPosts(private var view: PostContract.view,private val getListPost
     }
 
     override fun sendErrorPostPresenter(error: String?) {
-        if (view != null) {
+        if (isViewAttach()) {
 
             view!!.errorLoadRecyclerPost(error)
         }
 
     }
 
+    override fun detachView() {
+        view= null
+    }
+
+    override fun isViewAttach(): Boolean=view!=null
 }

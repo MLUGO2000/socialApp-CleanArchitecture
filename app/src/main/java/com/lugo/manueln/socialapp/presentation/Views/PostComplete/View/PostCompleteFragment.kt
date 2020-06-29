@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ import com.lugo.manueln.socialapp.domain.Post
 import com.lugo.manueln.socialapp.presentation.Views.PostComplete.PostCompleteContract
 import com.lugo.manueln.socialapp.usecases.PostComplete.GetCommentsPost
 import com.lugo.manueln.socialapp.usecases.PostComplete.GetPostComplete
+import com.lugo.manueln.socialapp.usecases.PostComplete.SaveCommentPost
 import kotlinx.android.synthetic.main.fragment_post_complete.*
 import javax.inject.Inject
 
@@ -37,6 +39,9 @@ class PostCompleteFragment : Fragment(), PostCompleteContract.view {
 
     @Inject
     lateinit var getCommentsPost: GetCommentsPost
+
+    @Inject
+    lateinit var saveCommentPost: SaveCommentPost
 
     private lateinit var myPresenter: PostCompleteContract.presenter
 
@@ -66,7 +71,7 @@ class PostCompleteFragment : Fragment(), PostCompleteContract.view {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        myPresenter = PresenterPostComplete(this,getPostComplete,getCommentsPost)
+        myPresenter = PresenterPostComplete( this,getPostComplete,getCommentsPost,saveCommentPost)
 
         cargarViews()
 
@@ -90,30 +95,12 @@ class PostCompleteFragment : Fragment(), PostCompleteContract.view {
 
         val myComment = Comments(idPost,0,"Manuel","",comment)
 
-        myPresenter!!.saveComment(myComment)
-
+        myPresenter.saveComment(myComment)
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        if (mListener != null) {
-            mListener!!.onFragmentInteraction(uri)
-        }
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            mListener = context
-        } else {
-            throw RuntimeException(context!!.toString() + " must implement OnFragmentInteractionListener")
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        mListener = null
+    override fun cleanFieldComment() {
+        userComment.setText("")
     }
 
 
@@ -144,6 +131,10 @@ class PostCompleteFragment : Fragment(), PostCompleteContract.view {
 
     }
 
+    override fun showErrorSaveComment(error: String?) {
+
+    }
+
     override fun updatePostComplete() {
         loadPostComplete()
     }
@@ -155,6 +146,25 @@ class PostCompleteFragment : Fragment(), PostCompleteContract.view {
     override fun hideProgressbar() {
         progressBarPostComplete.visibility = ProgressBar.GONE
     }
+
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (context is OnFragmentInteractionListener) {
+            mListener = context
+        } else {
+            throw RuntimeException(context!!.toString() + " must implement OnFragmentInteractionListener")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        myPresenter.detachView()
+        mListener = null
+    }
+
+
+
 
     /**
      * This interface must be implemented by activities that contain this

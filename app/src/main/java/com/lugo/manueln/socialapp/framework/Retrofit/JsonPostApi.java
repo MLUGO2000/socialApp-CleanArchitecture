@@ -1,4 +1,4 @@
-package com.lugo.manueln.socialapp.data.WebService;
+package com.lugo.manueln.socialapp.framework.Retrofit;
 
 import com.lugo.manueln.socialapp.domain.Comments;
 import com.lugo.manueln.socialapp.domain.Post;
